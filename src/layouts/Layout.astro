@@ -1,0 +1,250 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'StudUP - Educação para o Mercado',
+  description = 'Dezenas de opções de treinamentos presenciais, palestras, workshops e cursos online com valores que cabem no seu bolso.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/assets/wp/logo-studppp.png" />
+    <title>{title}</title>
+
+    <!-- Space Grotesk Google Font (Inter & Inter Tight are loaded locally in studup-exact.css) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Space+Grotesk:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+    />
+
+    <!-- Exact 1:1 Elementor & Theme Stylesheet Bundle (Local Assets & Fonts) -->
+    <link rel="stylesheet" href="/assets/css/studup-exact.css" />
+
+    <style is:global>
+      :root {
+        --wp--preset--aspect-ratio--square: 1;
+        --wp--preset--aspect-ratio--4-3: 4/3;
+        --wp--preset--aspect-ratio--3-4: 3/4;
+        --wp--preset--aspect-ratio--3-2: 3/2;
+        --wp--preset--aspect-ratio--2-3: 2/3;
+        --wp--preset--aspect-ratio--16-9: 16/9;
+        --wp--preset--aspect-ratio--9-16: 9/16;
+        --page-title-display: none;
+      }
+
+      /* Ensure elements hidden on all devices in Elementor stay hidden */
+      .elementor-hidden-desktop.elementor-hidden-tablet.elementor-hidden-mobile {
+        display: none !important;
+      }
+
+      /* Popup 635 Modal Overlay */
+      .studup-popup-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .studup-popup-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+      }
+      .studup-popup-dialog {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 640px;
+        animation: studupPopupFadeIn 0.25s ease-out;
+      }
+      .studup-popup-close {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        z-index: 10;
+        background: transparent;
+        border: none;
+        font-size: 32px;
+        line-height: 1;
+        color: #7a7a7a;
+        cursor: pointer;
+      }
+      .studup-popup-close:hover {
+        color: #000000;
+      }
+      @keyframes studupPopupFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="home wp-singular page-template page-template-elementor_canvas page page-id-740 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-canvas elementor-kit-16 elementor-page elementor-page-740"
+  >
+    <slot />
+
+    <!-- Local Swiper v8.4.5 and Lenis v1.1.18 -->
+    <script is:inline src="/assets/js/swiper.min.js"></script>
+    <script is:inline src="/assets/js/lenis.min.js"></script>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. Initialize Lenis Smooth Scroll on Desktop (exact match to original script)
+        if (window.innerWidth > 1024 && typeof Lenis !== 'undefined') {
+          const lenis = new Lenis({ duration: 1.5 });
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+        }
+
+        // 2. Initialize Hero Carousel (3d43cae)
+        if (typeof Swiper !== 'undefined') {
+          const heroSwiperEl = document.querySelector('.elementor-element-3d43cae .swiper');
+          if (heroSwiperEl) {
+            new Swiper(heroSwiperEl, {
+              slidesPerView: 1,
+              slidesPerGroup: 1,
+              spaceBetween: 10,
+              loop: true,
+              speed: 500,
+              autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              },
+              navigation: {
+                nextEl: '.elementor-element-3d43cae .elementor-swiper-button-next',
+                prevEl: '.elementor-element-3d43cae .elementor-swiper-button-prev',
+              },
+            });
+          }
+
+          // 3. Initialize Team Especialistas Carousel (c67b9f0)
+          const teamSwiperEl = document.querySelector('.elementor-element-c67b9f0 .swiper');
+          if (teamSwiperEl) {
+            new Swiper(teamSwiperEl, {
+              slidesPerView: 1,
+              slidesPerGroup: 1,
+              spaceBetween: 29,
+              loop: true,
+              speed: 500,
+              autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              },
+              pagination: {
+                el: '.elementor-element-c67b9f0 .swiper-pagination',
+                clickable: true,
+              },
+              navigation: {
+                nextEl: '.elementor-element-c67b9f0 .elementor-swiper-button-next',
+                prevEl: '.elementor-element-c67b9f0 .elementor-swiper-button-prev',
+              },
+              breakpoints: {
+                768: {
+                  slidesPerView: 2,
+                  spaceBetween: 29,
+                },
+                1025: {
+                  slidesPerView: 4,
+                  spaceBetween: 29,
+                },
+              },
+            });
+          }
+        }
+
+        // 4. Initialize Elementor Toggle FAQ Accordions (c7d9dde & 19f6054)
+        const toggleTitles = document.querySelectorAll('.elementor-widget-toggle .elementor-tab-title');
+        toggleTitles.forEach((title) => {
+          title.addEventListener('click', (e) => {
+            e.preventDefault();
+            const item = title.closest('.elementor-toggle-item');
+            if (!item) return;
+            const content = item.querySelector('.elementor-tab-content');
+            const isActive = title.classList.contains('elementor-active');
+
+            if (isActive) {
+              title.classList.remove('elementor-active');
+              title.setAttribute('aria-expanded', 'false');
+              if (content) {
+                content.classList.remove('elementor-active');
+                content.style.display = 'none';
+              }
+            } else {
+              title.classList.add('elementor-active');
+              title.setAttribute('aria-expanded', 'true');
+              if (content) {
+                content.classList.add('elementor-active');
+                content.style.display = 'block';
+              }
+            }
+          });
+        });
+
+        // 5. Initialize Popup 635 Lead Modal
+        const popupModal = document.getElementById('studup-popup-modal');
+        const openPopupBtns = document.querySelectorAll('[data-open-popup="635"], a[href="#popup-lead"]');
+        const closePopupBtns = document.querySelectorAll('[data-close-popup="635"]');
+
+        function openPopup(e) {
+          if (e) e.preventDefault();
+          if (popupModal) {
+            popupModal.style.display = 'flex';
+            popupModal.setAttribute('aria-hidden', 'false');
+          }
+        }
+
+        function closePopup(e) {
+          if (e) e.preventDefault();
+          if (popupModal) {
+            popupModal.style.display = 'none';
+            popupModal.setAttribute('aria-hidden', 'true');
+          }
+        }
+
+        openPopupBtns.forEach((btn) => btn.addEventListener('click', openPopup));
+        closePopupBtns.forEach((btn) => btn.addEventListener('click', closePopup));
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closePopup();
+        });
+
+        // Handle Popup Form WhatsApp submission
+        const popupForm = document.querySelector('#studup-popup-modal form.elementor-form');
+        if (popupForm) {
+          popupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = popupForm.querySelector('#form-field-nome')?.value || '';
+            const email = popupForm.querySelector('#form-field-email')?.value || '';
+            const tel = popupForm.querySelector('#form-field-telefone')?.value || '';
+            const assunto = popupForm.querySelector('#form-field-field_9342981')?.value || '';
+            const msg = `Olá! Vim pelo site da StudUP.\n*Nome:* ${nome}\n*E-mail:* ${email}\n*WhatsApp:* ${tel}\n*Assunto:* ${assunto}`;
+            window.open(`https://wa.me/5591986205594?text=${encodeURIComponent(msg)}`, '_blank');
+            closePopup();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

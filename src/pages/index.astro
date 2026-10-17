@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Componentes Globais / Compartilhados (usam em várias páginas)
+import S0NavBar from '../components/common/S0NavBar.astro';
+import Footer from '../components/common/Footer.astro';
+import LeadModal from '../components/common/LeadModal.astro';
+
+// Seções Exclusivas da Página Home (organizadas por ordem cronológica S1, S2, S3...)
+import S1HeroSlider from '../components/home/S1HeroSlider.astro';
+import S2QuickNav from '../components/home/S2QuickNav.astro';
+import S3PresencialSection from '../components/home/S3PresencialSection.astro';
+import S4OnlineSection from '../components/home/S4OnlineSection.astro';
+import S5CoursesOnlineSection from '../components/home/S5CoursesOnlineSection.astro';
+import S6CorporateSection from '../components/home/S6CorporateSection.astro';
+import S7PartnersSection from '../components/home/S7PartnersSection.astro';
+import S8TeamSection from '../components/home/S8TeamSection.astro';
+import S9FaqSection from '../components/home/S9FaqSection.astro';
+---
+
+<Layout title="StudUP - Educação para o Mercado">
+  <div data-elementor-type="wp-page" data-elementor-id="740" class="elementor elementor-740" data-elementor-post-type="page">
+    <S0NavBar />
+    <S1HeroSlider />
+    <S2QuickNav />
+    <S3PresencialSection />
+    <S4OnlineSection />
+    <S5CoursesOnlineSection />
+    <S6CorporateSection />
+    <S7PartnersSection />
+    <S8TeamSection />
+    <S9FaqSection />
+    <Footer />
+  </div>
+  <LeadModal />
+</Layout>
